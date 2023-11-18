@@ -78,7 +78,14 @@
 </template>
         
 <script setup lang='ts'>
-        
+import { useRouter } from "vue-router"
+const router = useRouter()
+if(localStorage.isLogin !== 'user')
+{
+        alert("Vui Đăng Nhập Tài Khoản Khách Hàng")
+        router.push('/login')
+
+}
 </script>
         
 <style>

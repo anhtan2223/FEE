@@ -13,177 +13,38 @@
                 </div>
 
                 <div class="card-group">
-                        <div class="card">
+                        <div class="card" v-for="i in productList" :key="i._id">
                                 <div class="card-body text-center">
-                                       <img src="/image/shoes1.png" alt="">
+                                       <img :src="i.PrdImage" alt="PrdImage">
                                 </div>
                                 <div class="products_text text-center">
-                                        <h2>NIKE</h2>
+                                        <h2>{{  i.productName }}</h2>
                                         <p>
-                                                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                                               {{ i.description }}
                                         </p>
-                                        <h3>$100.99</h3>
-                                        <div class="products_star">
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                        </div>
-                                        <button class="btn add-card m-3">Add Cart</button>
-                                </div>
-                        </div>
-                        <div class="card">
-                                <div class="card-body text-center">
-                                       <img src="/image/shoes8.png" alt="">
-                                </div>
-                                <div class="products_text text-center">
-                                        <h2>NIKE</h2>
-                                        <p>
-                                                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                                        </p>
-                                        <h3>$100.99</h3>
-                                        <div class="products_star">
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                        </div>
-                                        <button class="btn add-card m-3">Add Cart</button>
-                                </div>
-                        </div>
-                        <div class="card">
-                                <div class="card-body text-center">
-                                       <img src="/image/shoes2.png" alt="">
-                                </div>
-                                <div class="products_text text-center">
-                                        <h2>NIKE</h2>
-                                        <p>
-                                                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                                        </p>
-                                        <h3>$100.99</h3>
-                                        <div class="products_star">
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                        </div>
-                                        <button class="btn add-card m-3">Add Cart</button>
-                                </div>
-                        </div>
-                        <div class="card">
-                                <div class="card-body text-center">
-                                       <img src="/image/shoes3.png" alt="">
-                                </div>
-                                <div class="products_text text-center">
-                                        <h2>NIKE</h2>
-                                        <p>
-                                                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                                        </p>
-                                        <h3>$100.99</h3>
-                                        <div class="products_star">
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                        </div>
-                                        <button class="btn add-card m-3">Add Cart</button>
-                                </div>
-                        </div>
-                        <div class="card">
-                                <div class="card-body text-center">
-                                       <img src="/image/shoes4.png" alt="">
-                                </div>
-                                <div class="products_text text-center">
-                                        <h2>NIKE</h2>
-                                        <p>
-                                                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                                        </p>
-                                        <h3>$100.99</h3>
-                                        <div class="products_star">
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                        </div>
-                                        <button class="btn add-card m-3">Add Cart</button>
-                                </div>
-                        </div>
-                        <div class="card">
-                                <div class="card-body text-center">
-                                       <img src="/image/shoes5.png" alt="">
-                                </div>
-                                <div class="products_text text-center">
-                                        <h2>NIKE</h2>
-                                        <p>
-                                                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                                        </p>
-                                        <h3>$100.99</h3>
-                                        <div class="products_star">
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                        </div>
-                                        <button class="btn add-card m-3">Add Cart</button>
-                                </div>
-                        </div>
-                        <div class="card">
-                                <div class="card-body text-center">
-                                       <img src="/image/shoes6.png" alt="">
-                                </div>
-                                <div class="products_text text-center">
-                                        <h2>NIKE</h2>
-                                        <p>
-                                                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                                        </p>
-                                        <h3>$100.99</h3>
-                                        <div class="products_star">
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                        </div>
-                                        <button class="btn add-card m-3">Add Cart</button>
-                                </div>
-                        </div>
-                        <div class="card">
-                                <div class="card-body text-center">
-                                       <img src="/image/shoes7.png" alt="">
-                                </div>
-                                <div class="products_text text-center">
-                                        <h2>NIKE</h2>
-                                        <p>
-                                                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                                        </p>
-                                        <h3>$100.99</h3>
-                                        <div class="products_star">
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                        </div>
+                                        <h3>{{ i.price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'}) }}</h3>
+
                                         <button class="btn add-card m-3">Add Cart</button>
                                 </div>
                         </div>
         
-        
+                        <!-- {{ productList }} -->
                 </div>
         </div>
 </template>
     
 <script setup lang='ts'>
-    
+        import {ref} from 'vue'
+        import AxiosAPI from '../services/api.service'
+        const productList = ref()
+        async function getProduct()
+        {
+                productList.value = await AxiosAPI.getAllProduct()
+        }
+        getProduct()
 </script>
     
-<style>
+<style scoped>
     .card {
         box-shadow: 0 0 20px rgb(255, 255, 255);
         margin : 1.5vw ;
@@ -219,6 +80,10 @@
     .inputSearch input{
         width: 50vw;
         height: 30px;
+    }
+
+    .card p {
+        height : 10vh ;
     }
     
 </style>

@@ -13,25 +13,36 @@ const router = createRouter(
         path : '/login' ,
         component : () => import('../views/Login.vue') ,
         name : "Login" ,
+        props : true ,
       } ,
       {
         path : '/register' ,
         component : () => import('../views/Register.vue') ,
-        name : "Register"
+        name : "Register" ,
+        props : true ,
       } ,
       {
         path : '/cart' ,
-        component : () => import('../views/Cart.vue')
+        component : () => import('../views/Cart.vue') ,
+        props : true ,
       } ,
       {
         path : '/:pathMatch(.*)*',
         name: 'NotFound' ,
-        component : () => import('../views/NotFound.vue')
+        component : () => import('../views/NotFound.vue') ,
+        props : true ,
       } ,
       {
-        path : '/user' ,
-        component : () => import('../views/User/User.vue')
+        path : '/info' ,
+        component : () => import('../views/User/User.vue') ,
+        props : true ,
       } ,
+      {
+        path : '/info/doimk' ,
+        component : () => import('../views/User/User.ChangePass.vue') , 
+        props : true ,
+      } ,
+      
       
     ]
   }

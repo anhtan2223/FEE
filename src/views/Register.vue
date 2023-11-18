@@ -144,7 +144,7 @@
 .register-form {
     width : 60vw ;
     height: fit-content;
-    box-shadow: 5px 10px 10px #6c14d0;
+    box-shadow: 0px 0px 20px #ffffff;
     text-align: center;
     color: white ;
     background: linear-gradient(to right , #cf1a96 , #8139d3);

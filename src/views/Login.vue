@@ -39,7 +39,6 @@
         </div>
       </form>
     </div>
-    
   
 </template>
   
@@ -54,13 +53,13 @@
         password : undefined ,
     })
 
-    const emits = defineEmits(['throwUserData'])
 
     const router = useRouter()
 
     const result = ref("Init")
 
-    const test = ref()
+    if(localStorage.isLogin)
+      router.push('/info')
 
     async function Login()
     {
@@ -78,21 +77,16 @@
           return alert('Nhập Sai Mật Khẩu Vui Lòng Nhập Lại')
         }
 
-        
-
-        const role = {
+        const roleTable = {
             1 : "user" , 
             2 : "staff" ,
             3 : "admin"
         }
-        const UID = result.value.infomation._id
 
-        localStorage.isLogin = '1'
-        localStorage.user = JSON.stringify(result.value.infomation)
+        localStorage.info = JSON.stringify(result.value.infomation)
+        localStorage.isLogin = roleTable[result.value.infomation.role]
         
-        test.value = JSON.parse(localStorage.user)
-
-        // router.push(`/${role[result.value.infomation.roleID]}/${UID}`)
+        router.push(`/info`)
     }
 </script>
   
@@ -100,7 +94,7 @@
 
 .login-form {
     width : 60vw ;
-    box-shadow: 5px 10px 10px #6c14d0;
+    box-shadow: 0 0 20px #ffffff;
     color: white ;
     background: linear-gradient(to right , #cf1a96 , #8139d3);
   }

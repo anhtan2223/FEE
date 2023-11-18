@@ -14,6 +14,7 @@
                 <router-link to="/">
                     <a class="nav-link " href="#">
                         Sản Phẩm
+                        <i class="fas fa-box"></i>
                     </a>
                 </router-link>
                 </li>
@@ -40,7 +41,10 @@
 </template>
 
 <script setup lang='ts'>
-
+    import {computed, ref} from 'vue'
+    const ROLE = computed(()=>{
+        return localStorage.isLogin === 'user'
+    })
 </script>
 
 <style>
