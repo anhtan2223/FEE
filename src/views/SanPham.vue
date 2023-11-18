@@ -5,14 +5,29 @@
 
                 <h1 class="text-center mb-3" style="color : white">Sản Phẩm</h1>
 
-                <div class="inputSearch text-center mt-3">
-                        <input type="text" class="text-center" placeholder="Nhận Tên Sản Phẩm Cần Tìm ">
+                <div class="inputSearch mt-3 text-center">
+                        <input type="text" 
+                        class="text-center" 
+                        placeholder="Nhận Tên Sản Phẩm Cần Tìm"
+                        @keyup.enter="getProductByName"
+                        v-model="input"
+                        >
                         <button type="button" class="btn btn-dark" width="20px">
                                 <i class="fas fa-search"></i>
                         </button>   
                 </div>
-
-                <div class="card-group">
+                <div class="selectType mt-3 row">
+                        <select class="form-select" v-model="type" @change='getProductByName'>
+                                <option :value="0">Tất Cả</option>
+                                <option 
+                                        v-for='i in typeList' 
+                                        :key="i._id" 
+                                        :value='i._id'
+                                        > {{ i.Name }} 
+                                </option>
+                        </select>      
+                </div>
+                <div class="card-group" v-if="productList.length != 0">
                         <div class="card" v-for="i in productList" :key="i._id">
                                 <div class="card-body text-center">
                                        <img :src="i.PrdImage" alt="PrdImage">
@@ -27,21 +42,36 @@
                                         <button class="btn add-card m-3">Add Cart</button>
                                 </div>
                         </div>
-        
                         <!-- {{ productList }} -->
                 </div>
+                <h2 class="text-center" style="color:white" v-else>Không Tìm Thấy Sản Phẩm</h2>
         </div>
 </template>
     
 <script setup lang='ts'>
         import {ref} from 'vue'
         import AxiosAPI from '../services/api.service'
-        const productList = ref()
+        const productList = ref([])
+        const typeList = ref([])
+        const type = ref(0)
+        const input = ref("")
         async function getProduct()
         {
                 productList.value = await AxiosAPI.getAllProduct()
         }
         getProduct()
+
+        async function getProductByName()
+        {
+                const TYPE = type.value == 0 ? undefined : type.value 
+                productList.value = await AxiosAPI.getProductByName(input.value , TYPE)
+        }
+
+        async function getType()
+        {
+                typeList.value = await AxiosAPI.getAllType()
+        }
+        getType()
 </script>
     
 <style scoped>
@@ -73,13 +103,17 @@
         background: linear-gradient(to right, #c72092 , #6c14d0);
     }
 
-    .inputSearch{
-        margin-bottom: 20px ;
-    }
-
     .inputSearch input{
         width: 50vw;
-        height: 30px;
+        height: 31px;
+    }
+
+    .selectType select{
+        /* width: 52vw; */
+        /* margin-left: 24vw; */
+        width: 40vw;
+        margin-left: 50%;
+        transform:translateX(-50%);
     }
 
     .card p {

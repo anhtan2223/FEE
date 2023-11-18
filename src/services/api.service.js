@@ -31,6 +31,14 @@ class AxiosAPI
     {
         return (await this.api.get('/api/product')).data
     }
+    async getProductByName(name,type)
+    {
+        return (await this.api.post('/api/product/name' , {productName : name+"" , type: type*1})).data
+    }
+    async getAllType()
+    {
+        return (await this.api.get('/api/type')).data
+    }
 }
 
 export default new AxiosAPI()

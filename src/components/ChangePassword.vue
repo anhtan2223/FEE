@@ -58,7 +58,6 @@
                     </button>
             </div>
         </div>
-        {{ props.info }}
     </div>
 </template>
 
