@@ -12,7 +12,7 @@
                         @keyup.enter="getProductByName"
                         v-model="input"
                         >
-                        <button type="button" class="btn btn-dark" width="20px">
+                        <button type="button" class="btn btn-dark" width="20px" @click='getProductByName'>
                                 <i class="fas fa-search"></i>
                         </button>   
                 </div>
@@ -39,12 +39,16 @@
                                         </p>
                                         <h3>{{ i.price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'}) }}</h3>
 
-                                        <button class="btn add-card m-3">Add Cart</button>
+                                        <button class="btn add-cart m-3" v-if="isLogin !== 'staff'" @click="addItem(i)">Thêm Vào Giỏ Hàng</button>
+                                        <div v-else>
+                                                <button class="btn btn-outline-success m-3">Chỉnh Sửa</button>
+                                                <button class="btn btn-outline-danger m-3">Xoá</button>
+                                        </div>
                                 </div>
                         </div>
                         <!-- {{ productList }} -->
                 </div>
-                <h2 class="text-center" style="color:white" v-else>Không Tìm Thấy Sản Phẩm</h2>
+                <h2 class="text-center mt-5" style="color:white" v-else>Không Tìm Thấy Sản Phẩm</h2>
         </div>
 </template>
     
@@ -55,6 +59,8 @@
         const typeList = ref([])
         const type = ref(0)
         const input = ref("")
+        const uid = JSON.parse(localStorage.info)._id
+        const isLogin = localStorage.isLogin
         async function getProduct()
         {
                 productList.value = await AxiosAPI.getAllProduct()
@@ -72,6 +78,13 @@
                 typeList.value = await AxiosAPI.getAllType()
         }
         getType()
+        async function addItem(product) 
+        {
+                await await AxiosAPI.addProductToCart(uid , product)
+                alert(`Đã Thêm Sản Phẩm ${product.productName} Vào Giỏ Hàng`)     
+        }
+
+        
 </script>
     
 <style scoped>
@@ -98,7 +111,7 @@
     .card img:hover{
         transform: scale(1.2);
     }
-    .card .btn {
+    .card .add-cart {
         color: rgb(255, 255, 255);
         background: linear-gradient(to right, #c72092 , #6c14d0);
     }

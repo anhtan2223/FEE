@@ -67,6 +67,15 @@
         <label class="form-label" for="registerPhone">Số Điện Thoại</label>
       </div>
 
+      <div class="form-outline form-floating m-2">
+        <input type="phone" id="registerAddress" 
+        class="form-control" 
+        placeholder="Số Điện Thoại"
+        v-model="data.address"
+        />
+        <label class="form-label" for="registerAddress">Địa Chỉ</label>
+      </div>
+
 
       <!-- Checkbox -->
       <div class="form-check d-flex justify-content-center m-3">

@@ -39,6 +39,18 @@ class AxiosAPI
     {
         return (await this.api.get('/api/type')).data
     }
+    async getCart(uid)
+    {
+        return (await this.api.get(`/api/cart/${uid}`)).data
+    }
+    async addProductToCart(uid , product)
+    {
+        return (await this.api.post(`/api/cart/${uid}` , product )).data
+    }
+    async updateCart(uid , data)
+    {
+        return (await this.api.put(`/api/cart/${uid}` , data )).data
+    }
 }
 
 export default new AxiosAPI()

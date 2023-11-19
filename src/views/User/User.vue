@@ -36,6 +36,18 @@
                             <input type="text" id="email" class="form-control "  v-model='info.email' v-else>
                         </div>
                 </div>
+
+                <div class="row align-items-center m-3" v-if="isLogin === 'user'">
+                        <div class="col-2">
+                            <label for="email" class="col-form-label">Địa Chỉ</label>
+                        </div>
+
+                        <div class="col-10" >
+                            <input type="text" id="email" class="form-control " disabled :value='info.address' v-if="!isSetting">
+                            <input type="text" id="email" class="form-control " v-model='info.address' v-else>
+                        </div>
+
+                </div>
             </div>
             <hr>
             <div class="footer-element m-4">
@@ -50,9 +62,14 @@
                                     Đổi Mật Khẩu
                                 </button>
                             </router-link>
-                            <router-link :to="'/user'+'/taikhoan/xe'">
+                            <router-link :to="'/mybill/'+root._id" v-if="isLogin === 'user'">
                                 <button class="btn btn-outline-primary" type="button">
-                                    Danh Sách Xe
+                                   Đơn Hàng Của Tôi
+                                </button>
+                            </router-link>
+                            <router-link :to="'/bill'" v-else>
+                                <button class="btn btn-outline-primary" type="button">
+                                    Quản Lý Đơn Hàng
                                 </button>
                             </router-link>
                             <router-link to="/login">
@@ -71,6 +88,7 @@
     const root = JSON.parse(localStorage.info)
     const info = ref({...root})
     delete info.value._id
+    const isLogin = localStorage.isLogin
     const isSetting = ref(false)
     async function UpdateInfo() 
     {
