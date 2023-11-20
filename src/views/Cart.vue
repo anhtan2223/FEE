@@ -20,7 +20,12 @@
                                                 <td>{{ i.productName }}</td>
                                                 <td> {{ i.price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'}) }}</td>
                                                 <td>
-                                                        <input type="number" name="" id="" v-model="quantity[index]" min="0">
+                                                        <input type="number" 
+                                                        name="" id="" 
+                                                        v-model="quantity[index]" 
+                                                        min="0"
+                                                        @change="updateItem(index)"
+                                                        >
                                                 </td>
                                                 <td>{{ (i.price*quantity[index]).toLocaleString('it-IT', {style : 'currency', currency : 'VND'}) }}</td>
                                                 <td>
@@ -70,7 +75,13 @@ const SumMoney = computed(()=>{
         return quantity.value.reduce((acc , value , index) => { 
                 return acc + value * cart.value.prdId[index].price
         },0)
-}) 
+})
+async function updateItem(index)
+{
+        if(quantity.value[index] === 0)
+                deleteItem(index)
+        else await AxiosAPI.updateCart(UID , {quantity : quantity.value})
+}
 
 async function deleteItem(index) 
 {

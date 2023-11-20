@@ -1,8 +1,5 @@
 <template>
         <div class="big">
-
-                
-
                 <h1 class="text-center mb-3" style="color : white">Sản Phẩm</h1>
 
                 <div class="inputSearch mt-3 text-center">
@@ -12,9 +9,16 @@
                         @keyup.enter="getProductByName"
                         v-model="input"
                         >
-                        <button type="button" class="btn btn-dark" width="20px" @click='getProductByName'>
+
+                        <button  class="btn btn-dark" width="20px" @click='getProductByName'>
                                 <i class="fas fa-search"></i>
-                        </button>   
+                        </button>
+                        
+                        <button v-if='isLogin == "staff"' class="btn btn-primary align-middle" style="margin-top:-3px" @click="$router.push('/product')">
+                                Thêm Mới
+                                <i class="fas fa-plus"  width="20px"></i>
+                        </button>
+
                 </div>
                 <div class="selectType mt-3 row">
                         <select class="form-select" v-model="type" @change='getProductByName'>
@@ -25,7 +29,7 @@
                                         :value='i._id'
                                         > {{ i.Name }} 
                                 </option>
-                        </select>      
+                        </select>
                 </div>
                 <div class="card-group" v-if="productList.length != 0">
                         <div class="card" v-for="i in productList" :key="i._id">
@@ -41,8 +45,16 @@
 
                                         <button class="btn add-cart m-3" v-if="isLogin !== 'staff'" @click="addItem(i)">Thêm Vào Giỏ Hàng</button>
                                         <div v-else>
-                                                <button class="btn btn-outline-success m-3">Chỉnh Sửa</button>
-                                                <button class="btn btn-outline-danger m-3">Xoá</button>
+                                                <button 
+                                                class="btn btn-outline-success m-3"
+                                                @click="$router.push(`/product/${i._id}`)"
+                                                >
+                                                        Chỉnh Sửa
+                                                </button>
+                                                <button 
+                                                class="btn btn-outline-danger m-3"
+                                                @click='deleteProduct(i._id)'
+                                                >Xoá</button>
                                         </div>
                                 </div>
                         </div>
@@ -55,11 +67,14 @@
 <script setup lang='ts'>
         import {ref} from 'vue'
         import AxiosAPI from '../services/api.service'
+        import { useRouter } from 'vue-router'
+
         const productList = ref([])
         const typeList = ref([])
         const type = ref(0)
         const input = ref("")
-        const uid = JSON.parse(localStorage.info)._id
+        const router = useRouter()
+        var uid = localStorage.info ? JSON.parse(localStorage.info)._id : null 
         const isLogin = localStorage.isLogin
         async function getProduct()
         {
@@ -80,8 +95,22 @@
         getType()
         async function addItem(product) 
         {
-                await await AxiosAPI.addProductToCart(uid , product)
-                alert(`Đã Thêm Sản Phẩm ${product.productName} Vào Giỏ Hàng`)     
+                if(!uid)
+                {
+                        alert("Đăng Nhập Để Thêm Vào Giỏ Hàng")
+                        router.push('/login')
+                }
+                else
+                {
+                        await AxiosAPI.addProductToCart(uid , product)
+                        alert(`Đã Thêm Sản Phẩm ${product.productName} Vào Giỏ Hàng`)     
+                }
+        }
+        async function deleteProduct(PID) 
+        {
+                await AxiosAPI.deleteProduct(PID)
+                alert('Xoá Thành Công')
+                getProductByName()
         }
 
         
@@ -121,13 +150,14 @@
         height: 31px;
     }
 
-    .selectType select{
+    .selectType{
         /* width: 52vw; */
         /* margin-left: 24vw; */
         width: 40vw;
         margin-left: 50%;
         transform:translateX(-50%);
     }
+
 
     .card p {
         height : 10vh ;

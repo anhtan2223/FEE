@@ -42,6 +42,16 @@ const router = createRouter(
         component : () => import('../views/User/User.ChangePass.vue') , 
         props : true ,
       } ,
+      {
+        path : '/product' ,
+        component : () => import('../views/AddProduct.vue') , 
+        props : true ,
+      } ,
+      {
+        path : '/product/:id' ,
+        component : () => import('../views/UpdateProduct.vue') , 
+        props : true ,
+      } ,
       
       
     ]
