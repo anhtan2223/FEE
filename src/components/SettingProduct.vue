@@ -20,7 +20,7 @@
                 </div>
                 <div class="col-9">
                     <select class="form-select" v-model="Product.type" >
-                                <option :value="0">Tất Cả</option>
+                                <option :value="0">Chọn Loại Sản Phẩm</option>
                                 <option 
                                         v-for='i in listType' 
                                         :key="i._id" 
@@ -90,7 +90,8 @@
                     </button>
                 </div>
             </div>
-            {{ Product }}
+            Price {{ Number.isInteger(Product.price*1) && Product.price!=='' && Product.price*1 > 0 }}
+            Quantity {{ Number.isInteger(Product.quantity*1) && Product.quantity!=='' && Product.quantity*1 > 0 }}
         </div>
 </template>
     
@@ -125,13 +126,42 @@
     getAllType()
     async function update()
     {
+        if(!Product.value.productName) return alert("Không Thể Để Trống Tên Sản Phẩm")
+        if(Product.value.type === 0) return alert("Không Thể Để Trống Loại Sản Phẩm")
+        if(!Product.value.PrdImage) return alert("Không Thể Để Trống Đường Dẫn Hình Ảnh")
+        if(!Product.value.description) return alert("Không Thể Để Trống Mô Tả")
+        if(!(Number.isInteger(Product.value.quantity*1) && Product.value.quantity!=='' && Product.value.quantity*1 > 0))
+        {
+            Product.value.quantity = 1
+            return alert("Số Lượng Sản Phẩm Phải Là Số Lớn Hơn 0")
+        }
+        if(!(Number.isInteger(Product.value.price*1) && Product.value.price!=='' && Product.value.price*1 > 0))
+        {
+            Product.value.price = 10000
+            return alert("Giá Tiền Phải Là Số Lớn Hơn 0")
+        }
+
         await AxiosAPI.updateProduct(props.id,Product.value)
         alert("Chỉnh Sửa Thành Công")
         router.go(-1)   
     }
     async function create() 
     {
-        alert("Check")
+        if(!Product.value.productName) return alert("Không Thể Để Trống Tên Sản Phẩm")
+        if(Product.value.type === 0) return alert("Không Thể Để Trống Loại Sản Phẩm")
+        if(!Product.value.PrdImage) return alert("Không Thể Để Trống Đường Dẫn Hình Ảnh")
+        if(!Product.value.description) return alert("Không Thể Để Trống Mô Tả")
+        if(!(Number.isInteger(Product.value.quantity*1) && Product.value.quantity!=='' && Product.value.quantity*1 > 0))
+        {
+            Product.value.quantity = 1
+            return alert("Số Lượng Sản Phẩm Phải Là Số Lớn Hơn 0")
+        }
+        if(!(Number.isInteger(Product.value.price*1) && Product.value.price!=='' && Product.value.price*1 > 0))
+        {
+            Product.value.price = 10000
+            return alert("Giá Tiền Phải Là Số Lớn Hơn 0")
+        }
+
         await AxiosAPI.addProduct(Product.value)
         alert("Thêm Mới Thành Công")
         router.go(-1)
