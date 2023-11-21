@@ -92,6 +92,30 @@ class AxiosAPI
     {
         return (await this.api.delete(`/api/bill/${BID}`)).data
     }
+    async getNonVaildBill()
+    {
+        return (await this.api.get('/api/bill')).data
+    }
+    async validBill(BID,SID)
+    {
+        return (await this.api.put(`/api/bill/${BID}/valid`,{SID : SID})).data
+    }
+    async doneBill(BID,deliveryDate)
+    {
+        return (await this.api.put(`/api/bill/${BID}/done`,{deliveryDate : deliveryDate})).data
+    }
+    async nextStatus(BID)
+    {
+        return (await this.api.get(`/api/bill/status/${BID}`)).data
+    }
+    async getBillBySID(SID)
+    {
+        return (await this.api.get(`/api/bill/sid/${SID}`)).data
+    }
+    async getAllBillBySID(SID)
+    {
+        return (await this.api.get(`/api/bill/sid/${SID}/all`)).data
+    }
 }
 
 export default new AxiosAPI()

@@ -76,7 +76,7 @@
     import {ref} from "vue"
     import AxiosAPI from '../services/api.service'
 
-    const indexStatus = ["Đã Huỷ" , "Chờ Xác Nhận" , "Đang Gói Hàng" , "Đang Giao Hàng" , "Đã Thanh Toán"]
+    const indexStatus = ["Đã Huỷ" , "Chờ Xác Nhận" , "Đang Gói Hàng" , "Đang Giao Hàng" , "Đã Thanh Toán" , "Đã Huỷ"]
 
 
     const bill = ref()

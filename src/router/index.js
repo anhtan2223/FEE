@@ -67,6 +67,21 @@ const router = createRouter(
         component : () => import('../views/BillDetail.vue') , 
         props : true ,
       } ,
+      {
+        path : '/bill' ,
+        component : () => import('../views/QuanLyBill.vue') , 
+        props : true ,
+      } ,
+      {
+        path : '/bill/:sid' ,
+        component : () => import('../views/XuLyBill.vue') , 
+        props : true ,
+      } ,
+      {
+        path : '/bill/:sid/all' ,
+        component : () => import('../views/StaffBill.All.vue') , 
+        props : true ,
+      } ,
       
       
     ]
