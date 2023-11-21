@@ -52,6 +52,21 @@ const router = createRouter(
         component : () => import('../views/UpdateProduct.vue') , 
         props : true ,
       } ,
+      {
+        path : '/mybill/:id' ,
+        component : () => import('../views/MyBill.vue') , 
+        props : true ,
+      } ,
+      {
+        path : '/mybill/:id/all' ,
+        component : () => import('../views/MyBill.all.vue') , 
+        props : true ,
+      } ,
+      {
+        path : '/detail/:mahoadon' ,
+        component : () => import('../views/BillDetail.vue') , 
+        props : true ,
+      } ,
       
       
     ]

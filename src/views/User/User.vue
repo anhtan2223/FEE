@@ -1,6 +1,6 @@
 <template>
         <div class="user bg-white">
-            <h3 class="text-center mt-3 mb-3">Thông Tin Người Dùng</h3>
+            <h3 class="text-center mt-3 mb-3">Thông Tin Tài Khoản</h3>
             <hr>
             <div class="body-div">
 
@@ -52,11 +52,12 @@
             <hr>
             <div class="footer-element m-4">
                 <div class="d-grid gap-3 d-md-flex justify-content-md-around">
-                            <button class="btn btn-outline-primary" type="button" @click="isSetting = !isSetting" v-if="!isSetting">Sửa Thông Tin </button>
-                            <button class="btn btn-outline-success"
+                        <button class="btn btn-outline-primary" type="button" @click="isSetting = !isSetting" v-if="!isSetting">Sửa Thông Tin </button>
+                        <button class="btn btn-outline-success"
                             type="button" 
                             @click="UpdateInfo"
-                            v-else>Xác Nhận </button>
+                            v-else>Xác Nhận 
+                        </button>
                             <router-link :to="'/info/doimk'">
                                 <button class="btn btn-outline-primary" type="button">
                                     Đổi Mật Khẩu
@@ -94,7 +95,7 @@
     {
         isSetting.value = !isSetting.value 
         await AxiosAPI.UpdateAccount(root._id , info.value)
-        alert("Cập Nhật Thông Tin Người Dùng Thành Công")
+        alert("Cập Nhật Thông Tin Tài Khoản Thành Công")
         localStorage.info = JSON.stringify({"_id" : root._id , ...info.value})
     }
     function DangXuat()

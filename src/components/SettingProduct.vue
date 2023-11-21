@@ -90,12 +90,10 @@
                     </button>
                 </div>
             </div>
-            Price {{ Number.isInteger(Product.price*1) && Product.price!=='' && Product.price*1 > 0 }}
-            Quantity {{ Number.isInteger(Product.quantity*1) && Product.quantity!=='' && Product.quantity*1 > 0 }}
         </div>
 </template>
     
-<script setup lang='ts'>
+<script setup >
     import AxiosAPI from '../services/api.service'
     import {ref} from 'vue'
     import { useRouter } from 'vue-router'

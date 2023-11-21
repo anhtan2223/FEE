@@ -1,5 +1,5 @@
 <template>
-        <div class="big">
+        <div class="big mt-4">
                 <h1 class="text-center mb-3" style="color : white">Sản Phẩm</h1>
 
                 <div class="inputSearch mt-3 text-center">
@@ -64,7 +64,7 @@
         </div>
 </template>
     
-<script setup lang='ts'>
+<script setup >
         import {ref} from 'vue'
         import AxiosAPI from '../services/api.service'
         import { useRouter } from 'vue-router'
@@ -144,12 +144,13 @@
         color: rgb(255, 255, 255);
         background: linear-gradient(to right, #c72092 , #6c14d0);
     }
-
     .inputSearch input{
-        width: 50vw;
+        width: 40vw;
         height: 31px;
     }
-
+    .inputSearch .btn{
+        height: auto;
+    }
     .selectType{
         /* width: 52vw; */
         /* margin-left: 24vw; */
@@ -157,7 +158,6 @@
         margin-left: 50%;
         transform:translateX(-50%);
     }
-
 
     .card p {
         height : 10vh ;

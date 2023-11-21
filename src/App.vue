@@ -5,7 +5,7 @@
     </div>
 </template>
   
-<script setup lang='ts'>
+<script setup >
 import Nav from './components/Navigation.vue'
 </script>
   
@@ -13,8 +13,10 @@ import Nav from './components/Navigation.vue'
 Nav {
     display: inline-flexbox;
     position: top;
+    height: 8vh;
 }
 .body {
+    margin-top: 8vh ;
     background: linear-gradient(to right , #c72092 , #6c14d0);
     min-height: 100vh;
     display: flex;

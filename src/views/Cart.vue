@@ -1,6 +1,7 @@
 <template>
         <div class="container bg-white text-center">
                 <h3 class="text-center m-3 header-cart">Giỏ Hàng</h3>
+                <hr>
                 <div class="card-body" v-if="quantity.length != 0">
                         <table class="table" >
                                 <thead>
@@ -22,8 +23,10 @@
                                                 <td>
                                                         <input type="number" 
                                                         name="" id="" 
+                                                        class="form-control"
                                                         v-model="quantity[index]" 
                                                         min="0"
+                                                        max="200"
                                                         @change="updateItem(index)"
                                                         >
                                                 </td>
@@ -40,7 +43,7 @@
                         </div>
 
                         <div class="footer mb-3">
-                                <button class="btn btn-outline-success">Xác Nhận Đặt Hàng</button>
+                                <button class="btn btn-outline-success" @click="createBill">Xác Nhận Đặt Hàng</button>
                         </div>
 
                 </div>
@@ -48,6 +51,7 @@
                 <div class="card-body" v-else>
                         <h3>Bạn Chưa Thêm Món Nào Vào Giỏ Hàng</h3>
                 </div>
+                <hr>
         </div>
         
 </template>
@@ -90,9 +94,51 @@ async function deleteItem(index)
         await AxiosAPI.updateCart(UID,{prdId : newprdId , quantity : newQuantity})
         GetCart()
 }
+async function clearCart() 
+{
+        const newprdId = []
+        const newQuantity = []
+        await AxiosAPI.updateCart(UID,{prdId : newprdId , quantity : newQuantity})
+        GetCart()
+}
+function getNow()
+   {
+        const now = new Date()
+        const date = now.getDate()
+        const mounth = now.getMonth()+1
+        const year = now.getFullYear()
+        return `${year}-${mounth}-${date}`
+   }
+const now = getNow()
+const newBill = ref()
+async function createBill() 
+{
+        newBill.value = 
+        {
+                info : 
+                {
+                        "UID" : UID ,
+                        "SID" : -1 ,
+                        "status" : 1 ,
+                        "createDate" : now ,
+                        "deliveryDate" : -1 ,
+                        "value" : SumMoney ,
+                },
+                detail : 
+                {
+                        prdId : cart.value.prdId ,
+                        quantity : quantity.value ,
+                }
+        }
+        await AxiosAPI.createBill(newBill.value.info,newBill.value.detail)
+        await clearCart()
+        alert("Đặt Hàng Thành Công")
+        router.push(`/mybill/${UID}`)
+}
+
 </script>
         
-<style>
+<style scoped>
         .image {
                 height: 8vh;
         }
@@ -100,7 +146,8 @@ async function deleteItem(index)
         .item {
                 color: rgb(181, 39, 39);
         }
-        .container {
-                margin-top: -20vh ;
+        .container{
+                border-radius: 20px;
         }
+
 </style>

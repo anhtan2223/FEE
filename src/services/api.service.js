@@ -72,7 +72,26 @@ class AxiosAPI
     {
         return (await this.api.put(`/api/cart/${uid}` , data )).data
     }
-
+    async createBill(info,detail)
+    {
+        return (await this.api.post('/api/bill' , {info: info , detail : detail})).data
+    }
+    async getAvailBillUID(uid)
+    {
+        return (await this.api.get(`/api/bill/uid/available/${uid}`)).data
+    }
+    async getAllBillUID(uid)
+    {
+        return (await this.api.get(`/api/bill/uid/${uid}`)).data
+    }
+    async getBillDetailByID(BID)
+    {
+        return (await this.api.get(`/api/bill/${BID}`)).data
+    }
+    async cancelBill(BID)
+    {
+        return (await this.api.delete(`/api/bill/${BID}`)).data
+    }
 }
 
 export default new AxiosAPI()
